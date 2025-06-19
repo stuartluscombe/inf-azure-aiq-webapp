@@ -1,9 +1,6 @@
 locals {
   # Define the local variable for the project name
-  project_name = "my_project"
-
-  # Define the local variable for the region
-  region = "us-central1"
+  project_name = "aiq-webapp"
 
   # Define the local variable for the environment
   environment = "dev"
