@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "example" {
 }
 
 resource "azurerm_subnet" "mssql" {
-  name = "subnet-mssql-${local.project_name}-${local.environment}"
+  name                 = "subnet-mssql-${local.project_name}-${local.environment}"
   virtual_network_name = azurerm_virtual_network.example.name
   resource_group_name  = azurerm_resource_group.main.name
   address_prefixes     = ["10.0.2.0/24"]
@@ -23,11 +23,11 @@ resource "azurerm_subnet" "mssql" {
     name = "mssql-delegation"
 
     service_delegation {
-      name    = "Microsoft.Sql/managedInstances"
+      name = "Microsoft.Sql/managedInstances"
       actions = [
         "Microsoft.Network/virtualNetworks/subnets/join/action",
         "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-        "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
+      "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
     }
   }
 }
@@ -38,7 +38,7 @@ resource "azurerm_subnet_network_security_group_association" "mssql" {
 }
 
 resource "azurerm_subnet" "app_service" {
-  name = "subnet-app-service-${local.project_name}-${local.environment}"
+  name                 = "subnet-app-service-${local.project_name}-${local.environment}"
   virtual_network_name = azurerm_virtual_network.example.name
   resource_group_name  = azurerm_resource_group.main.name
   address_prefixes     = ["10.0.3.0/24"]
